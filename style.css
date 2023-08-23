@@ -1,5 +1,15 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-content: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.calculatorBody {
+  margin-top: 50px;
+  padding: 5px;
+  height: 550px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 2px black solid;
+  border-radius: 15px;
 }
