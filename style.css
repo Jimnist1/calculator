@@ -3,13 +3,51 @@ body {
   justify-content: center;
   align-content: center;
 }
+button {
+  font-size: 50px;
+  height: 80px;
+  width: 80px;
+}
 .calculatorBody {
   margin-top: 50px;
-  padding: 5px;
-  height: 550px;
+  padding: 40px;
+  height: 600px;
   width: 400px;
+  background-color: rgb(150, 150, 150);
   display: flex;
   flex-direction: column;
   border: 2px black solid;
   border-radius: 15px;
+}
+.inputContainer {
+  font-size: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(173, 216, 230);
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+.resetContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.row1,
+.row2,
+.row3,
+.row4 {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+#delete {
+  background-color: rgb(196, 197, 122);
+  height: 80px;
+  width: 185px;
+}
+#clear {
+  background-color: rgb(146, 63, 63);
+  height: 80px;
+  width: 185px;
 }
