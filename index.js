@@ -35,9 +35,16 @@ function doMath() {
 }
 
 function arrayToSum(array) {
-  currentSum = array.join("");
-  currentTotal = currentSum;
-  displayCurrent(currentTotal);
+  if (arraySet == currentArr) {
+    currentSum = array.join("");
+    currentTotal = parseInt(currentSum);
+    displayCurrent(currentTotal);
+    console.log(currentTotal);
+  } else {
+    nextSum = parseInt(array.join(""));
+    displayCurrent(nextSum);
+    console.log(currentTotal);
+  }
 }
 
 function deleteDigit(array) {
@@ -57,6 +64,14 @@ function createSum(array, number) {
     arrayToSum(array);
   }
 }
+function operatorChecker(button) {
+  if (currentTotal > 0) {
+    operator = button;
+    displayCurrent(button);
+    changeArray();
+    console.log(operator);
+  }
+}
 
 function checkZero(button) {
   if (currentArr.length || nextArr.length > 0) createSum(arraySet, button);
@@ -64,7 +79,8 @@ function checkZero(button) {
 
 function changeArray() {
   if (arraySet == currentArr) arraySet = nextArr;
-  else arraySet = currentArr;
+  else if (arraySet == nextArr);
+  arraySet = nextArr;
 }
 
 function checkButton(button) {
@@ -88,8 +104,7 @@ function checkButton(button) {
     case "-":
     case "/":
     case "*":
-      operator = button;
-      console.log(operator);
+      operatorChecker(button);
       break;
     case "delete":
       deleteDigit(arraySet);
