@@ -75,6 +75,7 @@ function operatorChecker(button) {
     operator = button;
     displayCurrent(button);
     changeArray();
+    arraySet = [];
     console.log(operator);
   }
 }
