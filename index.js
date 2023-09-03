@@ -1,6 +1,4 @@
 let currentArr = [];
-let nextArr = [];
-let arraySet = currentArr;
 
 let currentTotal = 0;
 let nextSum = 0;
@@ -11,6 +9,7 @@ function doMath() {
   if (nextSum == 0 && operator == "/")
     alert("Oi!! dividing by zero is dangerous!!");
   else {
+    currentArr = [];
     switch (operator) {
       case "+":
         currentTotal += nextSum;
@@ -33,14 +32,14 @@ function doMath() {
 }
 // Array formation & deletion:
 function arrayToSum(array) {
-  if (arraySet == currentArr) {
+  if (currentTotal == 0) {
     currentTotal = parseInt(array.join(""));
     displayCurrent(currentTotal);
     console.log(currentTotal);
   } else {
     nextSum = parseInt(array.join(""));
     displayCurrent(nextSum);
-    console.log(currentTotal);
+    console.log(currentTotal, nextSum);
   }
 }
 function deleteDigit(array) {
@@ -54,8 +53,6 @@ function deleteDigit(array) {
 }
 function clearForm() {
   currentArr = [];
-  nextArr = [];
-  arraySet = currentArr;
   currentTotal = 0;
   nextSum = 0;
   operator = "";
@@ -74,18 +71,12 @@ function operatorChecker(button) {
   if (currentTotal > 0) {
     operator = button;
     displayCurrent(button);
-    changeArray();
-    arraySet = [];
+    currentArr = [];
     console.log(operator);
   }
 }
 function checkZero(button) {
-  if (currentArr.length || nextArr.length > 0) createSum(arraySet, button);
-}
-function changeArray() {
-  if (arraySet == currentArr) arraySet = nextArr;
-  else if (arraySet == nextArr);
-  arraySet = nextArr;
+  if (currentArr.length > 0) createSum(currentArr, button);
 }
 function checkButton(button) {
   switch (button) {
@@ -102,7 +93,7 @@ function checkButton(button) {
     case "7":
     case "8":
     case "9":
-      createSum(arraySet, button);
+      createSum(currentArr, button);
       break;
     case "+":
     case "-":
@@ -111,7 +102,7 @@ function checkButton(button) {
       operatorChecker(button);
       break;
     case "delete":
-      deleteDigit(arraySet);
+      deleteDigit(currentArr);
       break;
     case "clear":
       clearForm();
