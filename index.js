@@ -2,13 +2,11 @@ let currentArr = [];
 let nextArr = [];
 let arraySet = currentArr;
 
-let currentSum = 0;
+let currentTotal = 0;
 let nextSum = 0;
 
-let currentTotal = 0;
-
 let operator = "";
-
+// Calculating things:
 function doMath() {
   if (nextSum == 0 && operator == "/")
     alert("Oi!! dividing by zero is dangerous!!");
@@ -33,11 +31,10 @@ function doMath() {
     }
   }
 }
-
+// Array formation & deletion:
 function arrayToSum(array) {
   if (arraySet == currentArr) {
-    currentSum = array.join("");
-    currentTotal = parseInt(currentSum);
+    currentTotal = parseInt(array.join(""));
     displayCurrent(currentTotal);
     console.log(currentTotal);
   } else {
@@ -46,7 +43,6 @@ function arrayToSum(array) {
     console.log(currentTotal);
   }
 }
-
 function deleteDigit(array) {
   if (array.length > 1) {
     array.pop();
@@ -56,7 +52,15 @@ function deleteDigit(array) {
     displayCurrent(0);
   }
 }
-
+function clearForm() {
+  currentArr = [];
+  nextArr = [];
+  arraySet = currentArr;
+  currentTotal = 0;
+  nextSum = 0;
+  operator = "";
+  displayCurrent(currentTotal);
+}
 function createSum(array, number) {
   if (array.length <= 8) {
     array.push(number);
@@ -64,6 +68,8 @@ function createSum(array, number) {
     arrayToSum(array);
   }
 }
+
+//Checks and status:
 function operatorChecker(button) {
   if (currentTotal > 0) {
     operator = button;
@@ -72,17 +78,14 @@ function operatorChecker(button) {
     console.log(operator);
   }
 }
-
 function checkZero(button) {
   if (currentArr.length || nextArr.length > 0) createSum(arraySet, button);
 }
-
 function changeArray() {
   if (arraySet == currentArr) arraySet = nextArr;
   else if (arraySet == nextArr);
   arraySet = nextArr;
 }
-
 function checkButton(button) {
   switch (button) {
     case "0":
@@ -110,20 +113,19 @@ function checkButton(button) {
       deleteDigit(arraySet);
       break;
     case "clear":
-      arraySet = [];
-      displayCurrent(0);
+      clearForm();
       break;
     case "=":
       doMath();
       break;
   }
 }
-
+// Visual display:
 function displayCurrent(total) {
   let inputCurrent = document.getElementById("inputContainer");
   inputCurrent.textContent = total;
 }
-
+//Button operation:
 const buttons = document.querySelectorAll("button");
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
