@@ -71,7 +71,11 @@ function createSum(array, number) {
 
 //Checks and status:
 function operatorChecker(button) {
-  if (currentTotal > 0) {
+  if (nextSum > 0) {
+    doMath();
+    operator = button;
+    currentArr = [];
+  } else if (currentTotal > 0) {
     operator = button;
     displayCurrent(button);
     currentArr = [];
