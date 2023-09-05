@@ -1,15 +1,14 @@
+// Initial Variable declarations:
 let currentArr = [];
-
 let currentTotal = 0;
 let nextSum = 0;
-
 let operator = "";
+
 // Calculating things:
 function doMath() {
   if (nextSum == 0 && operator == "/")
     alert("Oi!! dividing by zero is dangerous!!");
   else {
-    currentArr = [];
     switch (operator) {
       case "+":
         currentTotal += nextSum;
@@ -21,25 +20,29 @@ function doMath() {
         break;
       case "*":
         currentTotal *= nextSum;
+        roundVaribles(currentTotal);
         displayCurrent(currentTotal);
         break;
       case "/":
         currentTotal /= nextSum;
+        roundVaribles(currentTotal);
         displayCurrent(currentTotal);
         break;
     }
   }
 }
+function roundVaribles(num) {
+  currentTotal = Math.round(num * 100) / 100;
+}
+
 // Array formation & deletion:
 function arrayToSum(array) {
-  if (currentTotal == 0) {
-    currentTotal = parseInt(array.join(""));
+  if (operator == "") {
+    currentTotal = +array.join("");
     displayCurrent(currentTotal);
-    console.log(currentTotal);
   } else {
-    nextSum = parseInt(array.join(""));
+    nextSum = +array.join("");
     displayCurrent(nextSum);
-    console.log(currentTotal, nextSum);
   }
 }
 function deleteDigit(array) {
@@ -56,12 +59,12 @@ function clearForm() {
   currentTotal = 0;
   nextSum = 0;
   operator = "";
+
   displayCurrent(currentTotal);
 }
 function createSum(array, number) {
   if (array.length <= 8) {
     array.push(number);
-    console.log(array);
     arrayToSum(array);
   }
 }
@@ -72,11 +75,16 @@ function operatorChecker(button) {
     operator = button;
     displayCurrent(button);
     currentArr = [];
-    console.log(operator);
   }
 }
 function checkZero(button) {
   if (currentArr.length > 0) createSum(currentArr, button);
+}
+function checkForPoint(button) {
+  if (currentArr.length == 0) {
+    createSum(currentArr, "0");
+    createSum(currentArr, button);
+  } else if (!currentArr.includes(".")) createSum(currentArr, button);
 }
 function checkButton(button) {
   switch (button) {
@@ -84,6 +92,8 @@ function checkButton(button) {
       checkZero(button);
       break;
     case ".":
+      checkForPoint(button);
+      break;
     case "1":
     case "2":
     case "3":
