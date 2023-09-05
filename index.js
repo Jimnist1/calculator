@@ -18,12 +18,12 @@ function doMath() {
         currentTotal -= nextSum;
         displayCurrent(currentTotal);
         break;
-      case "*":
+      case "x":
         currentTotal *= nextSum;
         roundVaribles(currentTotal);
         displayCurrent(currentTotal);
         break;
-      case "/":
+      case "÷":
         currentTotal /= nextSum;
         roundVaribles(currentTotal);
         displayCurrent(currentTotal);
@@ -112,8 +112,8 @@ function checkButton(button) {
       break;
     case "+":
     case "-":
-    case "/":
-    case "*":
+    case "÷":
+    case "x":
       operatorChecker(button);
       break;
     case "delete":
