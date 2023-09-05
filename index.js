@@ -1,7 +1,7 @@
 // Initial Variable declarations:
 let currentArr = [];
 let currentTotal = 0;
-let nextSum = 0;
+let nextSum = "";
 let operator = "";
 
 // Calculating things:
@@ -57,7 +57,7 @@ function deleteDigit(array) {
 function clearForm() {
   currentArr = [];
   currentTotal = 0;
-  nextSum = 0;
+  nextSum = "";
   operator = "";
 
   displayCurrent(currentTotal);
@@ -71,9 +71,10 @@ function createSum(array, number) {
 
 //Checks and status:
 function operatorChecker(button) {
-  if (nextSum > 0) {
+  if (nextSum > 0 || nextSum < 0) {
     doMath();
     operator = button;
+    nextSum = "";
     currentArr = [];
   } else if (currentTotal > 0) {
     operator = button;
@@ -123,6 +124,7 @@ function checkButton(button) {
       break;
     case "=":
       doMath();
+      nextSum = "";
       break;
   }
 }
