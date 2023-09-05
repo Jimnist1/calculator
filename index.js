@@ -12,27 +12,34 @@ function doMath() {
     switch (operator) {
       case "+":
         currentTotal += nextSum;
+        longNums(currentTotal);
         displayCurrent(currentTotal);
         break;
       case "-":
         currentTotal -= nextSum;
+        longNums(currentTotal);
         displayCurrent(currentTotal);
         break;
       case "x":
         currentTotal *= nextSum;
-        roundVaribles(currentTotal);
+        roundNums(currentTotal);
+        longNums(currentTotal);
         displayCurrent(currentTotal);
         break;
       case "÷":
         currentTotal /= nextSum;
-        roundVaribles(currentTotal);
+        roundNums(currentTotal);
+        longNums(currentTotal);
         displayCurrent(currentTotal);
         break;
     }
   }
 }
-function roundVaribles(num) {
+function roundNums(num) {
   currentTotal = Math.round(num * 1000) / 1000;
+}
+function longNums(num) {
+  if (num.toString().length >= 16) currentTotal = num.toExponential(2);
 }
 
 // Array formation & deletion:
@@ -59,11 +66,10 @@ function clearForm() {
   currentTotal = 0;
   nextSum = "";
   operator = "";
-
   displayCurrent(currentTotal);
 }
 function createSum(array, number) {
-  if (array.length <= 8) {
+  if (array.length <= 10) {
     array.push(number);
     arrayToSum(array);
   }
