@@ -32,7 +32,7 @@ function doMath() {
   }
 }
 function roundVaribles(num) {
-  currentTotal = Math.round(num * 100) / 100;
+  currentTotal = Math.round(num * 1000) / 1000;
 }
 
 // Array formation & deletion:
